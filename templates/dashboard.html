@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bulma.min.css') }}">
+    </head>
+    <body>
+        <div class="box container">
+            <h1> Welcome to the Moinak Safety check dashboard! </h1>
+            <br>
+            Is Moinak alive? 
+            <br>
+            <div class="box button {{ colorcss | safe }}">
+                {{ userStatus | safe }}
+            </div>
+        </div>
+    </body>
+</html>
